@@ -2,7 +2,12 @@ import React, {Component} from 'react'
 import BookList from './BookList'
 import booksData from '../booksData'
 import './Books.css'
+<<<<<<< HEAD
 import booksData from '../booksData'
+=======
+import AddBook from './AddBook';
+//import DisplayAdded from './DisplayAdded';
+>>>>>>> 7b22d19c933eedea37baa00f2ea3ff874b24748b
 
 class Books extends Component {
 
@@ -75,6 +80,17 @@ class Books extends Component {
     componentDidMount() {
         this.fetchData()
     }
+    
+    handleBookSave = (author, country, imageLink, language, link, pages, title, year) => {
+        
+        const book = {author: author, country: country, imageLink: imageLink, language:language, link:link, pages:pages, title:title, year:year}
+        
+        this.setState({
+            selectedBooks: this.state.selectedBooks.concat(book),
+            books: this.state.books.concat(book)
+        })
+        
+    }
 
     render() {
         let selectLanguage = this.state.languages.map((language) => <option key={language} value={language}>{language}</option>)
@@ -82,7 +98,9 @@ class Books extends Component {
                 <h1>Books</h1>
                 <input type="text" onChange={this.booksByTitle} placeholder="Search by Title" />
                 <select onChange={this.booksByLanguage}>{selectLanguage}</select>
+                <AddBook onBookSave={this.handleBookSave}/>
                     <BookList list={this.state.selectedBooks}/>
+                    
                 </div>)
     }
 }
