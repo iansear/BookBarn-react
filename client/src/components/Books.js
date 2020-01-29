@@ -2,12 +2,8 @@ import React, {Component} from 'react'
 import BookList from './BookList'
 import booksData from '../booksData'
 import './Books.css'
-<<<<<<< HEAD
-import booksData from '../booksData'
-=======
 import AddBook from './AddBook';
 //import DisplayAdded from './DisplayAdded';
->>>>>>> 7b22d19c933eedea37baa00f2ea3ff874b24748b
 
 class Books extends Component {
 
