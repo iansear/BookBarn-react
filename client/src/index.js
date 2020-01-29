@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import Books from './components/Books'
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import BaseLayout from './components/BaseLayout';
@@ -10,7 +11,7 @@ ReactDOM.render(
     <BrowserRouter>
    <BaseLayout>
     <Switch>
-        <Route exact path = "/"  component = {App} />
+        <Route exact path = "/"  component = {Books} />
     </Switch>
    </BaseLayout>
 </BrowserRouter>
