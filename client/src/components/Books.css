@@ -1,0 +1,16 @@
+.booklist {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 20px;
+}
+
+.book {
+    height: 400px;
+    width: 200px;
+    margin-right: 20px;
+}
+
+.book img {
+    width: 160px;
+    margin: 20px;
+}
