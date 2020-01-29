@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import BookList from './BookList'
+import booksData from '../booksData'
 import './Books.css'
 
 class Books extends Component {
@@ -13,12 +14,10 @@ class Books extends Component {
         }
     }
 
-    fetchMovies = async () => {
-        let booksRAW = await fetch('https://raw.githubusercontent.com/benoitvallon/100-best-books/master/books.json')
-        let booksJSON = await booksRAW.json()
+    fetchData = () => {
         this.setState({
-            books: booksJSON,
-            selectedBooks: booksJSON
+            books: booksData,
+            selectedBooks: booksData
         }, () => {
             this.getLanguages()
         })
@@ -73,7 +72,7 @@ class Books extends Component {
     }
 
     componentDidMount() {
-        this.fetchMovies()
+        this.fetchData()
     }
 
     render() {

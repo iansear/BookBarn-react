@@ -1000,3 +1000,5 @@ title: "Memoirs of Hadrian",
 year: 1951
 }
 ]
+
+export default booksData
