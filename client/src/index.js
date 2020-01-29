@@ -11,8 +11,6 @@ ReactDOM.render(
    <BaseLayout>
     <Switch>
         <Route exact path = "/"  component = {App} />
-        <Route path = "/about"  component = {AboutUs} />
-        <Route path = "/posts/:postId" component = {PostDetails} />
     </Switch>
    </BaseLayout>
 </BrowserRouter>
