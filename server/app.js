@@ -5,13 +5,6 @@ app.use(express.json())
 app.use(cors())
 const PORT = 3001
 global.models = require('./models')
-const testAPIRouter = require('./routes/testAPI')
-
-
-
-app.use('/testAPI', testAPIRouter)
-
-
 
 app.get("/", (req, res) => {
   models.Book.findAll().then((books) => {
