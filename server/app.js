@@ -28,6 +28,16 @@ app.post("/", (req, res) => {
   })
 })
 
+app.get("/bookdetails/:bookID", (req, res) => {
+  models.Book.findOne({
+    where: {
+      id: req.params.bookID
+    }
+  }).then((book) => {
+    res.send(book)
+  })
+})
+
 app.listen(PORT, () => {
   console.log("Server is running...")
 })
