@@ -3,6 +3,7 @@ const url = 'http://localhost:3001/bookdetails/'
 
 function BookDetails(props) {
     const [book, setBook] = useState([])
+    let href = '/updatebook/' + props.match.params.bookID
 
     useEffect(() => {
         let urlID = url + props.match.params.bookID
@@ -10,6 +11,7 @@ function BookDetails(props) {
     })
     let imageURL = "https://raw.githubusercontent.com/benoitvallon/100-best-books/master/static/" + book.imageLink
     return (<div>
+        <a href={href}><button>Update</button></a>
         <h1>{book.title}</h1>
         <h3>By: {book.author}</h3>
         <img src={imageURL} alt="Oops"/>

@@ -6,6 +6,7 @@ import * as serviceWorker from './serviceWorker';
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import BaseLayout from './components/BaseLayout';
 import BookDetails from './components/BookDetails';
+import UpdateBook from './components/UpdateBook';
 
 ReactDOM.render(
     <BrowserRouter>
@@ -13,6 +14,7 @@ ReactDOM.render(
     <Switch>
         <Route exact path = "/"  component = {Books} />
         <Route path="/bookdetails/:bookID" component = {BookDetails} />
+        <Route path="/updatebook/:bookID" component = {UpdateBook} />
     </Switch>
    </BaseLayout>
 </BrowserRouter>

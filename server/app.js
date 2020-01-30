@@ -38,6 +38,34 @@ app.get("/bookdetails/:bookID", (req, res) => {
   })
 })
 
+app.get("/updatebook/:bookID", (req, res) => {
+  models.Book.findOne({
+    where: {
+      id: req.params.bookID
+    }
+  }).then((book) => {
+    res.send(book)
+  })
+})
+
+app.post("/updatebook/:bookID", async (req, res) => {
+  await models.Book.update({
+    author: req.body.author,
+    country: req.body.country,
+    imageLink: req.body.imageLink,
+    language: req.body.language,
+    link: req.body.link,
+    pages: req.body.pages,
+    title: req.body.title,
+    year: req.body.year
+  }, {
+    where: {
+      id: req.params.bookID
+    }
+  })
+  res.send("updated")
+})
+
 app.listen(PORT, () => {
   console.log("Server is running...")
 })
