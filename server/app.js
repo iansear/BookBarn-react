@@ -1,13 +1,16 @@
 const express = require('express')
+const cors = require('cors')
 const app = express()
-const PORT = 3000
+app.use(cors())
+const PORT = 3001
 global.models = require('./models')
 
-app.listen(PORT, () => {
-  console.log("Server is running...")
+app.get("/", (req, res) => {
+  res.send("Saved")
 })
 
 app.post("/", (req, res) => {
+  console.log(req.body)
   const book = models.Book.build({
     author: "DataTypes.STRING",
     country: "DataTypes.STRING",
@@ -21,4 +24,8 @@ app.post("/", (req, res) => {
   book.save().then( async () => {
       res.redirect("/")
   })
+})
+
+app.listen(PORT, () => {
+  console.log("Server is running...")
 })

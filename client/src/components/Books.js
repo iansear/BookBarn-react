@@ -81,13 +81,14 @@ class Books extends Component {
         const url = "http://localhost:3000"
         const book = {author: author, country: country, imageLink: imageLink, language:language, link:link, pages:pages, title:title, year:year}
         
-        await fetch(url, {
+        let response = await fetch(url, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
             },
-            body: 'this is the body'
+            body: JSON.stringify(book)
           })
+        let responseJSON = response.json()
 
         this.setState({
             selectedBooks: this.state.selectedBooks.concat(book),
