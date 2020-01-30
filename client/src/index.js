@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import Books from './components/Books'
 import AddBook from './components/AddBook'
 import * as serviceWorker from './serviceWorker';

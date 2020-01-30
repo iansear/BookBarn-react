@@ -1,6 +1,7 @@
 const express = require('express')
 const cors = require('cors')
 const app = express()
+app.use(express.json())
 app.use(cors())
 const PORT = 3001
 global.models = require('./models')
@@ -13,22 +14,23 @@ app.use('/testAPI', testAPIRouter)
 
 
 app.get("/", (req, res) => {
-  res.send("Saved")
+  models.Book.findAll().then((books) => {
+    res.send(books)
+  })
 })
 
 app.post("/", (req, res) => {
-  console.log(req.body)
   const book = models.Book.build({
-    author: "DataTypes.STRING",
-    country: "DataTypes.STRING",
-    imageLink: "DataTypes.STRING",
-    language: "DataTypes.STRING",
-    link: "DataTypes.STRING",
-    pages: 0,
-    title: "DataTypes.STRING",
-    year: 0
+    author: req.body.author,
+    country: req.body.country,
+    imageLink: req.body.imageLink,
+    language: req.body.language,
+    link: req.body.link,
+    pages: req.body.pages,
+    title: req.body.title,
+    year: req.body.year
   })
-  book.save().then( async () => {
+  book.save().then(() => {
       res.redirect("/")
   })
 })
