@@ -77,10 +77,18 @@ class Books extends Component {
         this.fetchData()
     }
     
-    handleBookSave = (author, country, imageLink, language, link, pages, title, year) => {
-        
+    handleBookSave = async (author, country, imageLink, language, link, pages, title, year) => {
+        const url = "http://localhost:3000"
         const book = {author: author, country: country, imageLink: imageLink, language:language, link:link, pages:pages, title:title, year:year}
         
+        await fetch(url, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: 'this is the body'
+          })
+
         this.setState({
             selectedBooks: this.state.selectedBooks.concat(book),
             books: this.state.books.concat(book)
