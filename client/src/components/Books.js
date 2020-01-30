@@ -77,7 +77,7 @@ class Books extends Component {
         this.fetchData()
     }
     
-    handleBookSave = async (author, country, imageLink, language, link, pages, title, year) => {
+    handleBookSave = (author, country, imageLink, language, link, pages, title, year) => {
         const book = {
             author: author, 
             country: country, 
@@ -88,7 +88,7 @@ class Books extends Component {
             title:title, 
             year:year}
         
-        await fetch(url, {
+        fetch(url, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
