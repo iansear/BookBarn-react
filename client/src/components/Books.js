@@ -1,9 +1,8 @@
 import React, {Component} from 'react'
 import BookList from './BookList'
-import booksData from '../booksData'
 import './Books.css'
 import AddBook from './AddBook';
-//import DisplayAdded from './DisplayAdded';
+const url = "http://localhost:3001"
 
 class Books extends Component {
 
@@ -16,12 +15,14 @@ class Books extends Component {
         }
     }
 
-    fetchData = () => {
+    fetchData = async () => {
+        let books = await fetch(url)
+        let booksJSON = await books.json()
+        let languages = this.getLanguages(booksJSON)
         this.setState({
-            books: booksData,
-            selectedBooks: booksData
-        }, () => {
-            this.getLanguages()
+            books: booksJSON,
+            selectedBooks: booksJSON,
+            languages: languages
         })
     }
 
@@ -35,12 +36,11 @@ class Books extends Component {
         return languagesUnique
     }
 
-    getLanguages = () => {
-        let languages = this.state.books.map((book) => book.language)
+    getLanguages = (books) => {
+        let languages = books.map((book) => book.language)
         let languagesUnique = this.uniqueLanguages(languages)
-        this.setState({
-            languages: languagesUnique
-        })
+        return languagesUnique
+
     }
 
     booksByTitle = (title) => {
@@ -78,21 +78,28 @@ class Books extends Component {
     }
     
     handleBookSave = async (author, country, imageLink, language, link, pages, title, year) => {
-        const url = "http://localhost:3000"
-        const book = {author: author, country: country, imageLink: imageLink, language:language, link:link, pages:pages, title:title, year:year}
+        const book = {
+            author: author, 
+            country: country, 
+            imageLink: imageLink, 
+            language:language, 
+            link:link, 
+            pages:pages, 
+            title:title, 
+            year:year}
         
         await fetch(url, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
             },
-            body: 'this is the body'
-          })
+            body: JSON.stringify(book)
+          }).then(() => this.fetchData())
 
-        this.setState({
-            selectedBooks: this.state.selectedBooks.concat(book),
-            books: this.state.books.concat(book)
-        })
+        // this.setState({
+        //     selectedBooks: this.state.selectedBooks.concat(book),
+        //     books: this.state.books.concat(book)
+        // })
         
     }
 
