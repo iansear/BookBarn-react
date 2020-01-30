@@ -48,8 +48,8 @@ app.get("/updatebook/:bookID", (req, res) => {
   })
 })
 
-app.post("/updatebook/:bookID", async (req, res) => {
-  await models.Book.update({
+app.post("/updatebook/:bookID",  (req, res) => {
+  models.Book.update({
     author: req.body.author,
     country: req.body.country,
     imageLink: req.body.imageLink,
@@ -62,8 +62,8 @@ app.post("/updatebook/:bookID", async (req, res) => {
     where: {
       id: req.params.bookID
     }
-  })
-  res.send("updated")
+  }).then(json => res.send(json))
+  
 })
 
 app.listen(PORT, () => {
