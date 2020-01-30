@@ -2,17 +2,17 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import Books from './components/Books'
-import AddBook from './components/AddBook'
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import BaseLayout from './components/BaseLayout';
+import BookDetails from './components/BookDetails';
 
 ReactDOM.render(
     <BrowserRouter>
    <BaseLayout>
     <Switch>
         <Route exact path = "/"  component = {Books} />
-        <Route path="/add-book" component = {AddBook} />
+        <Route path="/bookdetails/:bookID" component = {BookDetails} />
     </Switch>
    </BaseLayout>
 </BrowserRouter>

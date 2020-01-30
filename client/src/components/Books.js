@@ -95,12 +95,6 @@ class Books extends Component {
             },
             body: JSON.stringify(book)
           }).then(() => this.fetchData())
-
-        // this.setState({
-        //     selectedBooks: this.state.selectedBooks.concat(book),
-        //     books: this.state.books.concat(book)
-        // })
-        
     }
 
     render() {
@@ -110,8 +104,7 @@ class Books extends Component {
                 <input type="text" onChange={this.booksByTitle} placeholder="Search by Title" />
                 <select onChange={this.booksByLanguage}>{selectLanguage}</select>
                 <AddBook onBookSave={this.handleBookSave}/>
-                    <BookList list={this.state.selectedBooks}/>
-                    
+                <BookList list={this.state.selectedBooks}/>                    
                 </div>)
     }
 }
