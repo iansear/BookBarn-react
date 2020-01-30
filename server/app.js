@@ -4,6 +4,13 @@ const app = express()
 app.use(cors())
 const PORT = 3001
 global.models = require('./models')
+const testAPIRouter = require('./routes/testAPI')
+
+
+
+app.use('/testAPI', testAPIRouter)
+
+
 
 app.get("/", (req, res) => {
   res.send("Saved")
