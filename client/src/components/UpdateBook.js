@@ -19,7 +19,7 @@ function UpdateBook(props) {
               'Content-Type': 'application/json'
             },
             body: JSON.stringify(book)
-          }).then((response) => console.log(response))
+          })
     }
 
     useEffect(() => {
@@ -35,7 +35,7 @@ function UpdateBook(props) {
         <label>Pages: </label><input name="pages" type="number" placeholder={book.pages} onChange={handleChange}/><br/>
         <label>Year: </label><input name="year" type="number" placeholder={book.year} onChange={handleChange}/><br/>
         <label>Link: </label><input name="link" type="text" placeholder={book.link} onChange={handleChange}/><br/>
-        <button onClick={handleUpdate}>Update Book</button>
+        <a href="/"><button onClick={handleUpdate}>Update Book</button></a>
         </div>)
 }
 
