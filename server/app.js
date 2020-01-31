@@ -28,6 +28,8 @@ app.post("/", (req, res) => {
   })
 })
 
+
+
 app.get("/bookdetails/:bookID", (req, res) => {
   models.Book.findOne({
     where: {
@@ -64,6 +66,19 @@ app.post("/updatebook/:bookID",  (req, res) => {
     }
   }).then(json => res.send(json))
   
+})
+
+app.delete('/delete/:bookID', async (req, res) => {
+  
+  console.log(req.params.bookID)
+  
+  
+  let result = await models.Book.destroy({
+    where:{
+      id: req.params.bookID
+    }
+  })
+  res.send("deleted")
 })
 
 app.listen(PORT, () => {

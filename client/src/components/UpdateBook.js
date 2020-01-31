@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 const url = 'http://localhost:3001/updatebook/'
-
+const updatedLink = 'http://localhost:3000/'
 function UpdateBook(props) {
     const [book, setBook] = useState({})
 
@@ -35,7 +35,7 @@ function UpdateBook(props) {
         <label>Pages: </label><input name="pages" type="number" placeholder={book.pages} onChange={handleChange}/><br/>
         <label>Year: </label><input name="year" type="number" placeholder={book.year} onChange={handleChange}/><br/>
         <label>Link: </label><input name="link" type="text" placeholder={book.link} onChange={handleChange}/><br/>
-        <button onClick={handleUpdate}>Update Book</button>
+        <a href={updatedLink}><button onClick={handleUpdate}>Update Book</button></a>
         </div>)
 }
 
