@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react'
+import {connect} from 'react-redux'
+
 const url = 'http://localhost:3001/bookdetails/'
 const urldel = 'http://localhost:3001/delete/'
 const gohome = 'http://localhost:3000/'
@@ -27,6 +29,7 @@ function BookDetails(props) {
     return (<div>
         <a href={href}><button>Update</button></a>
         <a href={gohome}><button onClick={handleDelete}>DELETE</button></a>
+        <button onClick={()=> props.onAddedBooks(book)}>Add To Cart</button>
         <h1>{book.title}</h1>
         <h3>By: {book.author}</h3>
         <img src={imageURL} alt="Oops"/>
@@ -38,4 +41,10 @@ function BookDetails(props) {
         </div>)
 }
 
-export default BookDetails
+const mapDispatchToProps =(dispatch) => {
+    return {
+        onAddedBooks: (book) => dispatch({type: 'ADDED_TO_CART', book: book})
+    }
+}
+
+export default connect(null, mapDispatchToProps)(BookDetails)
