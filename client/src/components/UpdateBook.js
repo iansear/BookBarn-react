@@ -19,13 +19,14 @@ function UpdateBook(props) {
               'Content-Type': 'application/json'
             },
             body: JSON.stringify(book)
-          }).then((response) => console.log(response))
+          })
     }
 
     useEffect(() => {
         let urlID = url + props.match.params.bookID
         fetch(urlID).then(bookRAW => bookRAW.json()).then(book => setBook(book))
     }, [])
+    
     return (<div>
         <label>Title: </label><input name="title" placeholder={book.title} onChange={handleChange} type="text"/><br/>
         <label>Author: </label><input name="author" placeholder={book.author} onChange={handleChange} type="text"/><br/>
