@@ -36,11 +36,7 @@ function UpdateBook(props) {
         <label>Pages: </label><input name="pages" type="number" placeholder={book.pages} onChange={handleChange}/><br/>
         <label>Year: </label><input name="year" type="number" placeholder={book.year} onChange={handleChange}/><br/>
         <label>Link: </label><input name="link" type="text" placeholder={book.link} onChange={handleChange}/><br/>
-<<<<<<< HEAD
-        <a href="/"><button onClick={handleUpdate}>Update Book</button></a>
-=======
         <a href={updatedLink}><button onClick={handleUpdate}>Update Book</button></a>
->>>>>>> d2ba899c685eb6034f0cf103f1d15498d201b32a
         </div>)
 }
 
