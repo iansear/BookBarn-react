@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import {NavLink} from 'react-router-dom'
 
 class BookList extends Component {
 
@@ -8,7 +9,7 @@ class BookList extends Component {
             let href = "/bookdetails/" + book.id
             let imageURL = "https://raw.githubusercontent.com/benoitvallon/100-best-books/master/static/" + book.imageLink
             return (<div className="book" key={key}>
-                        <h3><a href={href}>{book.title}</a> - {book.author} - {book.year}</h3>
+                        <h3><NavLink to={href}>{book.title}</NavLink> - {book.author} - {book.year}</h3>
                         <img src={imageURL} alt="Oops"/>
                     </div>)
         })
