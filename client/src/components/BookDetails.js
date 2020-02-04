@@ -21,15 +21,29 @@ function BookDetails(props) {
         }).then((response) => console.log(response))
     }
     
+    const handleToggle =() => {
+            return (
+                <div>
+                    
+                <a href={href}><button>Update</button></a>
+                <a href={gohome}><button onClick={handleDelete}>DELETE</button></a>
+                <button onClick={()=> props.onAddedBooks(book)}>Add To Cart</button>
+                <button onClick={()=> props.onFavouriteBook(book)}>Add To Favs</button>
+                
+                </div>
+            )
+        
+    }
+    
     useEffect(() => {
         let urlID = url + props.match.params.bookID
         fetch(urlID).then(bookRAW => bookRAW.json()).then(book => setBook(book))
     })
     let imageURL = "https://raw.githubusercontent.com/benoitvallon/100-best-books/master/static/" + book.imageLink
     return (<div>
-        <a href={href}><button>Update</button></a>
-        <a href={gohome}><button onClick={handleDelete}>DELETE</button></a>
-        <button onClick={()=> props.onAddedBooks(book)}>Add To Cart</button>
+        
+        <div> {props.isAuth ? handleToggle() : null} </div>
+        
         <h1>{book.title}</h1>
         <h3>By: {book.author}</h3>
         <img src={imageURL} alt="Oops"/>
@@ -41,10 +55,17 @@ function BookDetails(props) {
         </div>)
 }
 
-const mapDispatchToProps =(dispatch) => {
+const mapStateToProps = (state) => {
     return {
-        onAddedBooks: (book) => dispatch({type: 'ADDED_TO_CART', book: book})
+        isAuth: state.isAuthenticated
     }
 }
 
-export default connect(null, mapDispatchToProps)(BookDetails)
+const mapDispatchToProps =(dispatch) => {
+    return {
+        onAddedBooks: (book) => dispatch({type: 'ADDED_TO_CART', book: book}),
+        onFavouriteBook: (book) => dispatch ({type: 'ADD_TO_FAVS', book: book})
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(BookDetails)
