@@ -7,6 +7,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import BaseLayout from './components/BaseLayout';
 import BookDetails from './components/BookDetails';
 import Register from './components/Register'
+import Login from './components/Login'
 import UpdateBook from './components/UpdateBook';
 import {createStore} from 'redux'
 import { Provider } from 'react-redux'
@@ -19,10 +20,12 @@ ReactDOM.render(
         <BrowserRouter>
         <BaseLayout>
         <Switch>
+            
             <Route exact path = "/"  component = {Books} />
             <Route path="/bookdetails/:bookID" component = {BookDetails} />
             <Route path="/updatebook/:bookID" component = {UpdateBook} />
             <Route path="/join" component={Register} />
+            <Route path="/sign-in" component={Login}/>
         </Switch>
         </BaseLayout>
     </BrowserRouter>
